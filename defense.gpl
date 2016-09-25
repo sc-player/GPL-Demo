@@ -55,9 +55,9 @@ pixmap background[460];
 //ui
 pixmap ui[44];
 int uiBlockHeight =4;
-pixmap goldIcon(filename="gold.bmp", x=32, y=32);
-pixmap healthIcon(x=470, y=32, filename="health.bmp");
-pixmap timeIcon(x=265, y=32, filename="time.bmp");
+pixmap goldIcon(filename="img/gold.bmp", x=32, y=32);
+pixmap healthIcon(x=470, y=32, filename="img/health.bmp");
+pixmap timeIcon(x=265, y=32, filename="img/time.bmp");
 textbox goldBox(x=112, y=48, text=gold, size=.32, blue=1, green=1, red=1);
 textbox healthBox(x=544, y=48, text=health, size=.32, blue=1, green=1, red=1);
 textbox timeBox(x=340, y=48, text=time, size=.32, blue=1, green=1, red=1, animation_block=count);
@@ -96,7 +96,7 @@ pixmap seige[8];
 pixmap bomb[80];
 
 //selector
-pixmap selector(user_int=0, visible=0, filename="selection.bmp", drawing_order=2);
+pixmap selector(user_int=0, visible=0, filename="img/selection.bmp", drawing_order=2);
 
 //worker
 pixmap workers[3];
@@ -114,14 +114,14 @@ initialization{
 	for(i=0; i<4; i+=1){
 		ui[counter].x=0;
 		ui[counter].y=i*32;
-		ui[counter].filename="borderh.bmp";
+		ui[counter].filename="img/borderh.bmp";
 		ui[counter].drawing_order=1;
 		counter+=1;
 		if((i==0)||(i==3)){
 			for(j=1; j<19; j+=1){
 				ui[counter].x=j*32;
 				ui[counter].y=i*32;
-				ui[counter].filename="borderh.bmp";
+				ui[counter].filename="img/borderh.bmp";
 				ui[counter].drawing_order=1;
 				counter+=1;
 			}
@@ -129,7 +129,7 @@ initialization{
 		ui[counter].x=608;
 		ui[counter].y=i*32;
 		ui[counter].drawing_order=1;
-		ui[counter].filename="borderh.bmp";
+		ui[counter].filename="img/borderh.bmp";
 		counter+=1;
 	}
 	//background
@@ -138,34 +138,34 @@ initialization{
 			background[i*20+j].x=j*32;
 			background[i*20+j].y=i*32+32*uiBlockHeight;
 			if(j<3 || j>16) {
-				background[i*20+j].filename="tree middle.bmp";
+				background[i*20+j].filename="img/tree middle.bmp";
 			}
 			if(j==3){
-				background[i*20+j].filename="tree right.bmp";
+				background[i*20+j].filename="img/tree right.bmp";
 			}
 			if(j==16){
-				background[i*20+j].filename="tree left.bmp";
+				background[i*20+j].filename="img/tree left.bmp";
 			}
 			if(j>3 && j<16){
 				if(i==6){
-					background[i*20+j].filename="wall.bmp";
+					background[i*20+j].filename="img/wall.bmp";
 				}
 				if(i!=6){
-					background[i*20+j].filename="ground.bmp";
+					background[i*20+j].filename="img/ground.bmp";
 				}
 			}
 		}
 	}
 	//game objects
 	for(i=0; i<4; i+=1){
-		tower[i].filename="tower.bmp";
+		tower[i].filename="img/tower.bmp";
 		tower[i].x=152+i*96;
 		tower[i].y=266;
 		tower[i].user_int=0;
 		tower[i].user_int2=12;
 		tower[i].drawing_order=1;
 		tower[i].visible=0;
-		catapult[i].filename="catapult.bmp";
+		catapult[i].filename="img/catapult.bmp";
 		catapult[i].x=152+i*96;
 		catapult[i].y=172;
 		catapult[i].drawing_order=1;
@@ -173,7 +173,7 @@ initialization{
 		catapult[i].user_int=0;
 		catapult[i].user_int2=20;
 		if(i!=3){
-			workers[i].filename="peasantwalk1.bmp";
+			workers[i].filename="img/peasantwalk1.bmp";
 			workers[i].visible=1;
 			workers[i].x=210+100*i;
 			workers[i].y=96;
@@ -188,7 +188,7 @@ initialization{
 		stone[i].green=0.5;
 		stone[i].drawing_order=4;
 		stone[i].radius=8;
-		seige[i].filename="seige.bmp";
+		seige[i].filename="img/seige.bmp";
 		seige[i].visible=0;
 		seige[i].user_int=0;
 		seige[i].user_int2=0;
@@ -203,7 +203,7 @@ initialization{
 	for(i=0; i<80; i+=1){
 		bomb[i].visible=0;
 		bomb[i].drawing_order=3;
-		bomb[i].filename="bomb1.bmp";
+		bomb[i].filename="img/bomb1.bmp";
 	}
 	//enemies
 	for(i=0; i<20; i+=1){
@@ -293,7 +293,7 @@ on uparrow{
 		else{
 			if((tower[selector.user_int].user_int==1)&&(gold>24)){
 				tower[selector.user_int].user_int=2;
-				tower[selector.user_int].filename="tower2.bmp";
+				tower[selector.user_int].filename="img/tower2.bmp";
 				tower[selector.user_int].x-=4;
 				tower[selector.user_int].y-=4;
 				gold-=25;
@@ -302,7 +302,7 @@ on uparrow{
 			else{
 				if((tower[selector.user_int].user_int==2)&&(gold>74)){
 					tower[selector.user_int].user_int=5;
-					tower[selector.user_int].filename="tower3.bmp";
+					tower[selector.user_int].filename="img/tower3.bmp";
 					tower[selector.user_int].x-=4;
 					tower[selector.user_int].y-=4;
 					gold-=75;
@@ -344,7 +344,7 @@ animation count(textbox tex){
 				if((enemies[i].visible==0)&&(pickedenemy==0)){
 					enemies[i].x=150+random(480-150);
 					enemies[i].y=764;
-					enemies[i].filename="skelewalk1.bmp";
+					enemies[i].filename="img/skelewalk1.bmp";
 					enemies[i].visible=1;
 					enemies[i].drawing_order=1;
 					enemies[i].animation_block=skelewalk;
@@ -368,7 +368,7 @@ animation count(textbox tex){
 				if((enemies[i].visible==0)&&(pickedenemy==0)){
 					enemies[i].x=150+random(480-150);
 					enemies[i].y=764;
-					enemies[i].filename="gruntwalk1.bmp";
+					enemies[i].filename="img/gruntwalk1.bmp";
 					enemies[i].visible=1;
 					enemies[i].drawing_order=1;
 					enemies[i].animation_block=gruntwalk;
@@ -391,7 +391,7 @@ animation count(textbox tex){
 			if((enemies[i].visible==0)&&(pickedenemy==0)){
 				enemies[i].x=150+random(480-150);
 				enemies[i].y=764;
-				enemies[i].filename="skelewalk1.bmp";
+				enemies[i].filename="img/skelewalk1.bmp";
 				enemies[i].visible=1;
 				enemies[i].drawing_order=1;
 				enemies[i].animation_block=skelewalk;
@@ -413,7 +413,7 @@ animation count(textbox tex){
 			if((enemies[i].visible==0)&&(pickedenemy==0)){
 				enemies[i].x=150+random(480-150);
 				enemies[i].y=764;
-				enemies[i].filename="skelewalk1.bmp";
+				enemies[i].filename="img/skelewalk1.bmp";
 				enemies[i].visible=1;
 				enemies[i].drawing_order=1;
 				enemies[i].animation_block=skelewalk;
@@ -436,13 +436,13 @@ animation count(textbox tex){
 				enemies[i].x=150+random(480-150);
 				enemies[i].y=764;
 				if(random(2)){
-					enemies[i].filename="gruntwalk1.bmp";
+					enemies[i].filename="img/gruntwalk1.bmp";
 					enemies[i].user_int3=1;
 					enemies[i].user_int=14;
 					enemies[i].animation_block=gruntwalk;
 				}
 				else{
-					enemies[i].filename="skeletonwalk1.bmp";
+					enemies[i].filename="img/skeletonwalk1.bmp";
 					enemies[i].animation_block=skelewalk;
 					enemies[i].user_int=4;
 					enemies[i].user_int3=0;
@@ -511,19 +511,19 @@ animation workerwalk(pixmap worker){
 		worker.user_int=0;
 	}
 	if(worker.user_int==0){
-		worker.filename="peasantwalk1.bmp";
+		worker.filename="img/peasantwalk1.bmp";
 	}
 	if(worker.user_int==1){
-		worker.filename="peasantwalk2.bmp";
+		worker.filename="img/peasantwalk2.bmp";
 	}
 	if(worker.user_int==2){
-		worker.filename="peasantwalk3.bmp";
+		worker.filename="img/peasantwalk3.bmp";
 	}
 	if(worker.user_int==3){
-		worker.filename="peasantwalk4.bmp";
+		worker.filename="img/peasantwalk4.bmp";
 	}
 	if(worker.user_int==4){
-		worker.filename="peasantwalk5.bmp";
+		worker.filename="img/peasantwalk5.bmp";
 	}
 	if(worker.y<300){
 		worker.y=worker.y+12;
@@ -543,24 +543,24 @@ animation repair(pixmap rep){
 		if(rep.user_int==0){
 			health+=1;
 			healthBox.text=health;
-			rep.filename="repair1.bmp";
+			rep.filename="img/repair1.bmp";
 		}
 		if(rep.user_int==1){
-			rep.filename="repair2.bmp";
+			rep.filename="img/repair2.bmp";
 		}
 		if(rep.user_int==2){
-			rep.filename="repair3.bmp";
+			rep.filename="img/repair3.bmp";
 		}
 		if(rep.user_int==3){
-			rep.filename="repair4.bmp";
+			rep.filename="img/repair4.bmp";
 		}
 		if(rep.user_int==4){
-			rep.filename="repair5.bmp";
+			rep.filename="img/repair5.bmp";
 		}
 	}
 	else{
 		rep.user_int=0;
-		rep.filename="peasantwalk1.bmp";
+		rep.filename="img/peasantwalk1.bmp";
 	}
 }
 
@@ -571,19 +571,19 @@ animation skelewalk(pixmap skele){
 		skele.user_int2=0;
 	}
 	if(skele.user_int2==0){
-		skele.filename="skelewalk1.bmp";
+		skele.filename="img/skelewalk1.bmp";
 	}
 	if(skele.user_int2==1){
-		skele.filename="skelewalk2.bmp";
+		skele.filename="img/skelewalk2.bmp";
 	}
 	if(skele.user_int2==2){
-		skele.filename="skelewalk3.bmp";
+		skele.filename="img/skelewalk3.bmp";
 	}
 	if(skele.user_int2==3){
-		skele.filename="skelewalk4.bmp";
+		skele.filename="img/skelewalk4.bmp";
 	}
 	if(skele.user_int2==4){
-		skele.filename="skelewalk5.bmp";
+		skele.filename="img/skelewalk5.bmp";
 	}
 	if(skele.y>352){
 		skele.y=skele.y-5;
@@ -600,42 +600,42 @@ animation skeleatk(pixmap skel){
 		skel.user_int2=0;
 	}
 	if(skel.user_int2==0){
-		skel.filename="skeleattack1.bmp";
+		skel.filename="img/skeleattack1.bmp";
 	}
 	if(skel.user_int2==1){
-		skel.filename="skeleattack2.bmp";
+		skel.filename="img/skeleattack2.bmp";
 	}
 	if(skel.user_int2==2){
-		skel.filename="skeleattack3.bmp";
+		skel.filename="img/skeleattack3.bmp";
 		health-=1;
 		healthBox.text=health;
 	}
 	if(skel.user_int2==3){
-		skel.filename="skeleattack4.bmp";
+		skel.filename="img/skeleattack4.bmp";
 	}
 	if(skel.user_int2==4){
-		skel.filename="skeleattack5.bmp";
+		skel.filename="img/skeleattack5.bmp";
 	}
 }
 
 animation skeledeath(pixmap ske){
 	if(ske.user_int2==0){
-		ske.filename="skeledeath1.bmp";
+		ske.filename="img/skeledeath1.bmp";
 	}
 	if(ske.user_int2==1){
-		ske.filename="skeledeath2.bmp";
+		ske.filename="img/skeledeath2.bmp";
 	}
 	if(ske.user_int2==2){
-		ske.filename="skeledeath3.bmp";
+		ske.filename="img/skeledeath3.bmp";
 	}
 	if(ske.user_int2==3){
-		ske.filename="skeledeath4.bmp";
+		ske.filename="img/skeledeath4.bmp";
 	}
 	if(ske.user_int2==4){
-		ske.filename="skeledeath5.bmp";
+		ske.filename="img/skeledeath5.bmp";
 	}
 	if(ske.user_int2==5){
-		ske.filename="skeledeath6.bmp";
+		ske.filename="img/skeledeath6.bmp";
 	}
 	if(ske.user_int2==6){
 		ske.visible=0;
@@ -652,19 +652,19 @@ animation gruntwalk(pixmap grunt){
 		grunt.user_int2=0;
 	}
 	if(grunt.user_int2==0){
-		grunt.filename="gruntwalk1.bmp";
+		grunt.filename="img/gruntwalk1.bmp";
 	}
 	if(grunt.user_int2==1){
-		grunt.filename="gruntwalk2.bmp";
+		grunt.filename="img/gruntwalk2.bmp";
 	}
 	if(grunt.user_int2==2){
-		grunt.filename="gruntwalk3.bmp";
+		grunt.filename="img/gruntwalk3.bmp";
 	}
 	if(grunt.user_int2==3){
-		grunt.filename="gruntwalk4.bmp";
+		grunt.filename="img/gruntwalk4.bmp";
 	}
 	if(grunt.user_int2==4){
-		grunt.filename="gruntwalk5.bmp";
+		grunt.filename="img/gruntwalk5.bmp";
 	}
 	if(grunt.y>352){
 		grunt.y=grunt.y-5;
@@ -683,20 +683,20 @@ animation gruntatk(pixmap grun){
 		grun.y+=8;
 	}
 	if(grun.user_int2==0){
-		grun.filename="gruntatk1.bmp";
+		grun.filename="img/gruntatk1.bmp";
 	}
 	if(grun.user_int2==1){
-		grun.filename="gruntatk2.bmp";
+		grun.filename="img/gruntatk2.bmp";
 	}
 	if(grun.user_int2==2){
-		grun.filename="gruntatk3.bmp";
+		grun.filename="img/gruntatk3.bmp";
 	}
 	if(grun.user_int2==3){
-		grun.filename="gruntatk4.bmp";
+		grun.filename="img/gruntatk4.bmp";
 	}
 	if(grun.user_int2==4){
 		grun.y-=8;
-		grun.filename="gruntatk5.bmp";
+		grun.filename="img/gruntatk5.bmp";
 		health-=2;
 		healthBox.text=health;
 	}
@@ -791,7 +791,7 @@ animation catapultatk(pixmap cata){
 	else{
 		if(attacking){
 			if(cata.user_int2==0){
-				cata.filename="catapult5.bmp";
+				cata.filename="img/catapult5.bmp";
 				cata.user_int2=20;
 				for(i=0; i<8; i+=1){
 					if(cata.user_int==1){
@@ -820,15 +820,15 @@ animation catapultatk(pixmap cata){
 				pickedstone=0;
 			}
 			if(cata.user_int2==1){
-				cata.filename="catapult4.bmp";
+				cata.filename="img/catapult4.bmp";
 				cata.user_int2-=1;
 			}
 			if(cata.user_int2==2){
-				cata.filename="catapult3.bmp";
+				cata.filename="img/catapult3.bmp";
 				cata.user_int2-=1;
 			}
 			if(cata.user_int2==3){
-				cata.filename="catapult2.bmp";
+				cata.filename="img/catapult2.bmp";
 				cata.user_int2-=1;
 			}
 		}
@@ -845,7 +845,7 @@ animation projectile(circle sto){
 				exps[i].x=sto.x-24;
 				exps[i].y=sto.y-24;
 				exps[i].user_int2=0;
-				exps[i].filename="exp1.bmp";
+				exps[i].filename="img/exp1.bmp";
 				exps[i].visible=1;
 				exps[i].user_int=sto.user_int;
 				exps[i].animation_block=explode;
@@ -859,19 +859,19 @@ animation projectile(circle sto){
 animation explode(pixmap exp){
 	exp.user_int2+=1;
 	if(exp.user_int2==1){
-		exp.filename="exp2.bmp";
+		exp.filename="img/exp2.bmp";
 	}
 	if(exp.user_int2==2){
-		exp.filename="exp3.bmp";
+		exp.filename="img/exp3.bmp";
 	}
 	if(exp.user_int2==3){
-		exp.filename="exp4.bmp";
+		exp.filename="img/exp4.bmp";
 	}
 	if(exp.user_int2==4){
-		exp.filename="exp5.bmp";
+		exp.filename="img/exp5.bmp";
 	}
 	if(exp.user_int2==5){
-		exp.filename="exp6.bmp";
+		exp.filename="img/exp6.bmp";
 	}
 	if(exp.user_int2==6){
 		exp.visible=0;
@@ -935,7 +935,7 @@ animation proj(pixmap pro){
 				exps[i].x=pro.x-32;
 				exps[i].y=pro.y-32;
 				exps[i].user_int2=0;
-				exps[i].filename="exp1.bmp";
+				exps[i].filename="img/exp1.bmp";
 				exps[i].visible=1;
 				exps[i].user_int=pro.user_int;
 				exps[i].animation_block=explode;
@@ -983,7 +983,7 @@ animation bombexp(pixmap b){
 		}
 	}
 	if(b.user_int==2){
-		b.filename="bomb3.bmp";
+		b.filename="img/bomb3.bmp";
 	}
 	if(b.user_int>2){
 		b.visible=0;
